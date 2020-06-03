@@ -2,3 +2,4 @@ django
 djangorestframework
 django-crispy-forms
 django-cors-headers
+gunicorn
