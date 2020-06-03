@@ -1,10 +1,11 @@
 from django.db import models
 class Usersdata(models.Model):
-    name=models.CharField(max_length=100,default=False)
-    username=models.CharField(max_length=100,unique=True)
+    firstname=models.CharField(max_length=100,default=False)
+    lastname=models.CharField(max_length=100,unique=True)
     email=models.CharField(max_length=100,unique=True)
     password=models.CharField(max_length=100)
-    gender=models.CharField(max_length=100,blank=True,null=True)
+    timezone=models.CharField(max_length=100,blank=True,null=True)
+    language=models.CharField(max_length=100,blank=True,null=True)
 class AboutEvents(models.Model):
     eventid=models.CharField(max_length=30,default=False,unique=True)
     registerenddate=models.CharField(max_length=10,default=False)
