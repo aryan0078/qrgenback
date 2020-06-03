@@ -27,5 +27,6 @@ urlpatterns = [
     path("aboutevent/",user_views.aboutevent,name="aboutevent"),
     path("teamreg/",user_views.teamreg,name="teamregister"),
     path("checkemail/",user_views.checkemail,name="checkemail"),
-    path("payment/",user_views.payment,name="payment")
+    path("payment/",user_views.payment,name="payment"),
+     path("gen/",user_views.gen,name="gen")
 ]

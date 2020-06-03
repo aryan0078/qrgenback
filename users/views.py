@@ -6,6 +6,9 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from rest_framework.response import Response
+from django.http import FileResponse
+import pyqrcode
+
 from .sereializer import TeamregSerializer,AboutEventsSerializer,UsersdataSerializer
 @csrf_exempt
 @api_view(['POST'])
@@ -59,7 +62,15 @@ def payment(request):
 	#yha pr insta mojo link hoga
 	return JsonResponse({"msg":"this is instamojo part"})
 	
-
+@csrf_exempt
+@api_view(['POST'])
+def gen(request):
+	url=request.data['url']
+	res = pyqrcode.create(url)
+	res.svg('1.svg', scale=8)
+	img = open('1.svg', 'rb')
+	qr = FileResponse(img)
+	return qr
 
 
 
