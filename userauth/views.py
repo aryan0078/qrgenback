@@ -12,8 +12,8 @@ def login(request):
        
         s=Users.objects.get(email=request.data['email'])
         
-        ser=UsersSerializer(s,many=False)
-        return Response(ser.data)
+        ser=UsersSerializer(s)
+        return Response(ser)
         if ser.data["password"]==request.data['password'] and ser.data['email']==request.data['email']:
             return Response({"data":ser.data,"msg":"Login Done!"})
         return JsonResponse({"msg":"Username or password is incorrect"})
