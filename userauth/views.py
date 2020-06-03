@@ -9,11 +9,11 @@ from .serealizers import UsersSerializer
 @api_view(["POST"])
 def login(request):
     try:
-        return Response(request.data['email'])
+       
         s=Users.objects.get(email=request.data['email'])
         
         ser=UsersSerializer(s,many=False)
-        
+        return Response(ser.data)
         if ser.data["password"]==request.data['password'] and ser.data['email']==request.data['email']:
             return Response({"data":ser.data,"msg":"Login Done!"})
         return JsonResponse({"msg":"Username or password is incorrect"})
