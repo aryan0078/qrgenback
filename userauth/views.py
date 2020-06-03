@@ -8,17 +8,17 @@ from .serealizers import UsersSerializer
 @csrf_exempt
 @api_view(["POST"])
 def login(request):
-    try:
+    
        
-        s=Users.objects.get(email=request.data['email'])
+    s=Users.objects.get(email=request.data['email'])
         
-        ser=UsersSerializer(s)
-        return Response(ser)
-        if ser.data["password"]==request.data['password'] and ser.data['email']==request.data['email']:
-            return Response({"data":ser.data,"msg":"Login Done!"})
-        return JsonResponse({"msg":"Username or password is incorrect"})
-    except:
-        return JsonResponse({"msg":"User not found"})
+    ser=UsersSerializer(s)
+    return Response(ser)
+    #if ser.data["password"]==request.data['password'] and ser.data['email']==request.data['email']:
+       # return Response({"data":ser.data,"msg":"Login Done!"})
+        #return JsonResponse({"msg":"Username or password is incorrect"})
+   
+       # return JsonResponse({"msg":"User not found"})
 @csrf_exempt
 @api_view(["POST"])
 def signup(request):
