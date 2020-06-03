@@ -1,1 +1,1 @@
-web: gunicorn qrgenback.wsgi
+web: gunicorn django_project.wsgi
