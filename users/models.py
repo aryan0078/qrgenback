@@ -6,19 +6,9 @@ class Usersdata(models.Model):
     password=models.CharField(max_length=100)
     timezone=models.CharField(max_length=100,blank=True,null=True)
     language=models.CharField(max_length=100,blank=True,null=True)
-class AboutEvents(models.Model):
+class qr(models.Model):
     eventid=models.CharField(max_length=30,default=False,unique=True)
-    registerenddate=models.CharField(max_length=10,default=False)
-    description=models.CharField(max_length=310)
-    currentseats=models.CharField(max_length=10)
-    avilseats=models.CharField(max_length=10)
-    firstprice=models.CharField(max_length=20)
-    secondprice=models.CharField(max_length=20)
-    thirdprice=models.CharField(max_length=20)
-    rules=models.CharField(max_length=300)
-    shedule=models.CharField(max_length=50)
-    teams=models.CharField(max_length=300)
-    watchnow=models.CharField(max_length=50)
+    
 # Create your models here.
 class Teamreg(models.Model):
     fullname=models.CharField(max_length=20,unique=True)

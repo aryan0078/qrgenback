@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
-from . models import Usersdata,AboutEvents,Teamreg
+from . models import Usersdata
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from django.http import FileResponse
 import pyqrcode
 
-from .sereializer import TeamregSerializer,AboutEventsSerializer,UsersdataSerializer
+from .sereializer import UsersdataSerializer
 @csrf_exempt
 @api_view(['POST'])
 def register(request):
@@ -56,23 +56,33 @@ def checkemail(request):
 	except:
 		return JsonResponse({"registered":"false"})
 	
-@csrf_exempt
-@api_view(['POST'])
-def payment(request):
-	#yha pr insta mojo link hoga
-	return JsonResponse({"msg":"this is instamojo part"})
+
 	
 @csrf_exempt
 @api_view(['POST'])
 def gen(request):
 	url=request.data['url']
 	res = pyqrcode.create(url)
-	res.svg('1.svg', scale=8)
-	img = open('1.svg', 'rb')
-	qr = FileResponse(img)
-	return qr
+	import os
+	try:
+		os.chdir(os.getcwd()+'/qr')
+		res.svg(str(get_client_ip(request))+'.svg', scale=8)
+		img = open(str(get_client_ip(request))+'.svg', 'rb')
+		qr = FileResponse(img)
+		return qr
+	except:
+		res.svg(str(get_client_ip(request))+'.svg', scale=8)
+		img = open(str(get_client_ip(request))+'.svg', 'rb')
+		qr = FileResponse(img)
+		return qr
 
-
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 
 

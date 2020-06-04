@@ -4,3 +4,4 @@ django-crispy-forms
 django-cors-headers
 gunicorn
 pyqrcode
+django-qrcode
